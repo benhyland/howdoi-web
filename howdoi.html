@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>howdoi-web</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+			function howdoi(event) {
+				event.preventDefault()
+				$.get("cgi-bin/howdoi.cgi?" + $("#input").val(),
+					function(data) {
+						$("#answer").text(data)
+					}
+				)
+			}
+
+			$(function() {
+				$('#howdoi_form').submit(howdoi)
+			})
+		</script>
+	</head>
+	<body>
+
+		<form id="howdoi_form">
+			<input id="input" type="text" />
+			<input type="submit" value="howdoi?" />
+		</form>
+		<pre id="answer"></pre>
+	</body>
+</html>
